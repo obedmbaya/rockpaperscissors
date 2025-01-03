@@ -10,7 +10,7 @@
             
             function getComputerChoice() {
                 
-                let numGen = Math.random();
+                const numGen = Math.random();
                 if (numGen === 0) {
                     return "rock";
                 }
@@ -26,23 +26,64 @@
                 }
             };
 
-            let resultComputer = getComputerChoice();
+            
             
             function getHumanChoice() {
                 let choice = prompt("Choose Rock, Paper or Scissors:");
                 return choice.toLowerCase();
             }
 
-            let humanChoice = getHumanChoice();
-
-            console.log("computer chooses: " + resultComputer);
-
-            console.log("human choice: " + humanChoice);
-
-            const computerScore = 0;
-            const humanScore = 0;
+            
 
 
+
+            let computerScore = 0;
+            let humanScore = 0;
+
+            function playRound(humanChoice, computerChoice) {
+                if (humanChoice === "rock") {
+                    if (computerChoice === "paper") {
+                        computerScore++;
+                    }
+
+                    else if (computerChoice === "scissors") {
+                        humanScore++;
+                    }
+                }
+
+                else if (humanChoice === "paper") {
+                    if (computerChoice === "scissors") {
+                        computerScore++;
+                    }
+
+                    else if (computerChoice === "rock") {
+                        humanScore++;
+                    }
+                }
+
+                else if (humanChoice === "scissors"){
+                    if (computerChoice === "rock") {
+                        computerScore++;
+                    }
+
+                    else if (computerChoice === "paper") {
+                        humanScore++;
+                    }
+                }
+            }
+
+            function playGame() {
+                for (let i = 0; i < 5; i++) {
+                    console.log(`Round: ${i + 1}`);
+                    const humanChoice = getHumanChoice();
+                    const computerChoice = getComputerChoice();
+                    playRound(humanChoice, computerChoice);
+                    console.log(`Human Choice is: ${humanChoice}, Computer Choice is: ${computerChoice}`);
+                    console.log(`Human Score is: ${humanScore}, Computer Score is: ${computerScore}`);
+                }
+            }
+
+            playGame();
         </script>
     </body>
 </html>
